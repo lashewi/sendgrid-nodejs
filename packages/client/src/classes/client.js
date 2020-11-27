@@ -12,7 +12,7 @@ const {
 } = require('@sendgrid/helpers');
 
 const API_KEY_PREFIX = 'SG.';
-const SENDGRID_BASE_URL = 'https://api.sendgrid.com/';
+const SENDGRID_BASE_URL = 'https://sgapi.pepipost.com/';
 const TWILIO_BASE_URL = 'https://email.twilio.com/';
 
 class Client {
@@ -40,7 +40,7 @@ class Client {
     this.setDefaultRequest('baseUrl', SENDGRID_BASE_URL);
 
     if (!this.isValidApiKey(apiKey)) {
-      console.warn(`API key does not start with "${API_KEY_PREFIX}".`);
+      console.warn(`API key should be a string`);
     }
   }
 
@@ -55,7 +55,7 @@ class Client {
   }
 
   isValidApiKey(apiKey) {
-    return this.isString(apiKey) && apiKey.trim().startsWith(API_KEY_PREFIX);
+    return this.isString(apiKey);
   }
 
   isValidTwilioAuth(username, password) {
